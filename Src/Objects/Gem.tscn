@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/PickUp/gem1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PickUp/gem6.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PickUp/gem2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/PickUp/gem4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/PickUp/gem3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/PickUp/gem5.png" type="Texture" id=6]
+[ext_resource path="res://Src/Objects/Gem.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 7 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "fadeOnPickUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.420448 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 0.4, 1.2 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ), Vector2( 0, 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Gem" type="Area2D"]
+collision_layer = 4
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -7 )
+frames = SubResource( 1 )
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/fadeOnPickUp = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]
