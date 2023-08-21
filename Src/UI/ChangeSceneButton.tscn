@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Src/UI/ChangeSceneButton.gd" type="Script" id=1]
+
+[node name="ChangeSceneButton" type="Button"]
+margin_right = 100.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+script = ExtResource( 1 )
+nextScenePath = "res://Src/Levels/TestLevel.tscn"
+
+[connection signal="button_up" from="." to="." method="_on_PlayButton_button_up"]

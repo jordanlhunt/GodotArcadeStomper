@@ -1,5 +1,45 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/UI/MainMenuBackground.png" type="Texture" id=1]
+[ext_resource path="res://Src/UI/GenericLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Src/UI/QuitButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Src/UI/ChangeSceneButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/UI/publicpixeltheme.tres" type="Theme" id=5]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 5 )
+
+[node name="MainMenuBackground" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="TitleLabel" parent="." instance=ExtResource( 2 )]
+margin_top = 23.0
+margin_bottom = 37.0
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = -19.0
+margin_right = 28.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PlayButton" parent="Menu" instance=ExtResource( 4 )]
+margin_right = 56.0
+margin_bottom = 17.0
+
+[node name="QuitButton" parent="Menu" instance=ExtResource( 3 )]
+margin_top = 21.0
+margin_right = 56.0
+margin_bottom = 38.0

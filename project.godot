@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="HeroicPlatformer"
-run/main_scene="res://Src/Levels/TestLevel.tscn"
+run/main_scene="res://Src/UI/titlescreen.tscn"
 config/icon="res://icon.png"
 
 [display]
