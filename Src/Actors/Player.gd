@@ -57,7 +57,7 @@ func UpdateAnimatedSprite() -> void:
 func _on_EnemyDetector_body_entered(body: Node) -> void:
 	if body.has_method("Kill"):
 		body.Kill()
-		queue_free()
+		Die()
 
 
 func Stomp() -> void:
@@ -78,6 +78,13 @@ func Stomp() -> void:
 			self._velocity.y = -stompImpulse
 			(collider as Enemy).Die()
 			print("Stomp() worked")
+			PlayerDataSingleton.playerScore += 1
 		if isBouncing:
 			self._velocity.y = -bumperImpulse
 			print("Bounce() worked")
+
+
+func Die() -> void:
+	print("Stomper will be forgotten by time")
+	PlayerDataSingleton.playerDeaths += 1
+	queue_free()

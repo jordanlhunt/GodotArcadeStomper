@@ -5,6 +5,8 @@ export(String, FILE) var nextScenePath = ""
 
 
 func _on_PlayButton_button_up() -> void:
+	PlayerDataSingleton.Reset()
+	get_tree().paused = false
 	get_tree().change_scene(nextScenePath)
 
 func _get_configuration_warning() -> String:

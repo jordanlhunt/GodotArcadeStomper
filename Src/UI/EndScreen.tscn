@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/UI/MainMenuBackground.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/publicpixeltheme.tres" type="Theme" id=2]
+[ext_resource path="res://Src/UI/EndScreen.gd" type="Script" id=3]
 [ext_resource path="res://Src/UI/QuitButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Src/UI/ChangeSceneButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Src/UI/GenericLabel.tscn" type="PackedScene" id=7]
@@ -10,6 +11,7 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="EndScreenBackground" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -17,6 +19,22 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2
+
+[node name="CongratulationsLabel" parent="." instance=ExtResource( 7 )]
+margin_top = 16.0
+margin_bottom = 32.0
+text = "Well done! You finished the game!"
+
+[node name="FinalScores" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -72.0
+margin_top = 56.0
+margin_right = 72.0
+margin_bottom = 75.0
+text = "Final Score is %s.
+You died %s times."
+align = 1
 
 [node name="Menu" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -40,19 +58,3 @@ text = "Play Again?"
 margin_top = 21.0
 margin_right = 133.0
 margin_bottom = 38.0
-
-[node name="CongratulationsLabel" parent="." instance=ExtResource( 7 )]
-margin_top = 16.0
-margin_bottom = 32.0
-text = "Well done! You finished the game!"
-
-[node name="FinalScores" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -72.0
-margin_top = 56.0
-margin_right = 72.0
-margin_bottom = 75.0
-text = "Final Score is %s.
-You died %s times."
-align = 1

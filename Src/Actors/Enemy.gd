@@ -3,6 +3,7 @@ onready var animated_sprite: Sprite = $AnimatedSprite
 onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 const SNAP_PIXELS = 65.0 * Vector2.DOWN
 const SPEED = 65
+const SCORE_VALUE = 100
 class_name Enemy
 
 
@@ -26,6 +27,7 @@ func UpdateAnimatedSprite() -> void:
 
 
 func Die() -> void:
+	PlayerDataSingleton.playerScore += SCORE_VALUE
 	queue_free()
 
 
